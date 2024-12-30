@@ -1,0 +1,9 @@
+#!bin/bash
+
+PERSON1=RAMESH
+PERSON2=SURESH
+
+echo "#PERSON1:: Hi Srini"
+echo "#PERSON2::Hi Satya"
+echo "#PERSON1::How are you doing"
+echo "PERSON2::I am good.How are you?
