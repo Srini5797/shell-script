@@ -1,5 +1,5 @@
-#!bin/bash
+#!/bin/bash
 
 MSG="SCRIPT1"
 
-echo "Hellp from: $MSG"
+echo "Hello from: $MSG"
