@@ -4,4 +4,4 @@ MSG="SCRIPT1"
 
 echo "Hello from: $MSG"
 
-sh script1.sh
+sh 21-script-2.sh
