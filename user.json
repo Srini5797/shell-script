@@ -1,0 +1,23 @@
+{
+    "name":"srinivas" ,
+    "email":"venkata5797@gmail.com",
+    "address" : 
+
+    [ 
+        {
+            "type" :"perm",
+            "doorno" :"123",
+            "street" : "c camp"
+            
+        
+        },
+        {
+            "type" :"perm",
+            "doorno" :"123",
+            "street" : "c camp"
+            
+        
+        }
+
+    ]
+}
