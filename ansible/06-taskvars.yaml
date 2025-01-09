@@ -6,7 +6,7 @@
     DURATION: 120HRS
     TRAINER: Sivakumar
   tasks:
-  - name : print vars:
+  - name : print vars
       vars: # Task level variables, accessible only with in the task. Task variables can override play level variables. Local variables
          COURSE: Ansible
          ansible.builtin.debug:
