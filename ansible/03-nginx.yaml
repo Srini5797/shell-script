@@ -1,5 +1,5 @@
 - name: install and run nginx
-  hosts: 172.31.80.120
+  hosts: web
   become: yes # -b
   tasks:
   - name: install nginx
