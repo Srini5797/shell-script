@@ -10,6 +10,6 @@
   tasks:
   - name : print the variables
     ansible.builtin.debug:
-    msg : "Cousre is {{COURSE}},duration is {{DURATION}}, and trainer {{TRAINER}}"
+    msg : "Cousre is {{COURSE}},duration is {{DURATION}}, and trainer is  {{TRAINER}}"
 
     
