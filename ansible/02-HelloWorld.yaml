@@ -1,7 +1,7 @@
+
 - name: hello playbook
-  hosts: web
+  hosts: 172.31.80.120
   tasks:
   - name: print hello world
     ansible.builtin.debug:
       msg: "Hello World"
-

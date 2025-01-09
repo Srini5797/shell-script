@@ -1,6 +1,6 @@
-- name: PING
+- name: hello playbook
   hosts: 172.31.80.120
-  tasks: # task=module=collection
-  - name: ping the server
-    ansible.builtin.ping:
-    
+  tasks:
+  - name: print hello world
+    ansible.builtin.debug:
+      msg: "Hello World"
