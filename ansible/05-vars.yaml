@@ -2,9 +2,9 @@
   host: local
   connection: local
   vars: 
-  COURSE : " devops with aws"
-  DURATION: 120 hrs
-  TRAINER : "siva kumar"
+    COURSE : " devops with aws"
+    DURATION: 120 hrs
+    TRAINER : siva kumar
 
 
   tasks:
