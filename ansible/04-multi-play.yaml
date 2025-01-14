@@ -4,7 +4,7 @@
   tasks:
   - name: PLAY1 and TASK1
     ansible.builtin.debug:
-      msg: "Hello from PLAY1 and TASK1"
+      msg: "Hello from PLAY1 and TASK2"
 
 - name: PLAY2
   hosts: local
@@ -12,4 +12,4 @@
   tasks:
   - name: PLAY2 and TASK1
     ansible.builtin.debug:
-      msg: "Hello from PLAY2 and TASK1"
+      msg: "Hello from PLAY2 and TASK2"
