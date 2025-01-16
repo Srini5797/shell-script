@@ -1,0 +1,7 @@
+- name: varaiables
+  hosts: local
+  connection: local
+  tasks : 
+    - name: print the varaiables
+      ansible.builtin.debug:
+       msg: "Srini Satya Naishika Charan"
