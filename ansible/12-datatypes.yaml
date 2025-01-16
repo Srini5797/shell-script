@@ -1,5 +1,5 @@
 - name: DevOps course information
-  hosts: l172.31.30.123 
+  hosts: 172.31.30.123 
   connection: 172.31.30.123 
   vars:
     course_name: "DevOps with AWS" # string
