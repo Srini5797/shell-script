@@ -1,5 +1,6 @@
 - name : print the facts
-  hosts: web 
+  hosts: 172.31.30.123 
+
   tasks: 
    - name: print the facts
      ansible.builtin.debug:
