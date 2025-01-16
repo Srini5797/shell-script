@@ -1,5 +1,5 @@
 - name: install packages
-  hosts: web
+  hosts: [172.31.30.123 ]
   become: yes
   tasks:
   - name: install packages
