@@ -1,5 +1,6 @@
 - name: install packages
-  hosts: [172.31.30.123 ]
+  hosts: local
+  connection: local
   become: yes
   tasks:
   - name: install packages
