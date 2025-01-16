@@ -1,7 +1,11 @@
 - name: varaiables
   hosts: local
   connection: local
+  vars :
+   COURSE: Devops with AWS
+   DURATION: 120 Hrs
+   Trainer : Siva Kumar Reddy
   tasks : 
     - name: print the varaiables
       ansible.builtin.debug:
-       msg: "Srini Satya Naishika Charan"
+       msg: "{{COUSRE}} , {{DURATION}} , {{Trainer}} "
