@@ -2,7 +2,7 @@
   hosts: local
   connection: local
   vars :
-   COURSE: Devops with AWS
+   COURSE: "Devops with AWS"
    DURATION: 120 Hrs
    Trainer : Siva Kumar Reddy
   tasks : 
