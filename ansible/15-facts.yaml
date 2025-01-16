@@ -1,7 +1,6 @@
-- name : print the facts
-  hosts: 172.31.30.123 
-
-  tasks: 
-   - name: print the facts
-     ansible.builtin.debug:
-       msg:"{{ansible_facts}}"
+- name: print the facts
+  hosts: web
+  tasks:
+  - name: print the facts
+    ansible.builtin.debug:
+      msg: "{{ ansible_facts }}"
