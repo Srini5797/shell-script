@@ -1,60 +1,73 @@
-- name : configure backend server
+- name: configure backend server
   hosts: backend
-  become : yes
-  tasks : 
-    - name : disable node js
-      ansible.builtin.command: dnf module disable nodejs -y
-    
-    - name : enable node js 20
-      ansible.builtin.command: dnf module enable nodejs:20 -y
+  become: yes
+  tasks:
+  - name: disable current nodejs
+    ansible.builtin.command: dnf module disable nodejs -y
 
-    - name : install nodejs
-      ansible.builtin.package:
-         name : " {{item}} }"
-         state : present
-      loop :
-        - node js
-        - mysql   
+  - name: enable nodejs 20
+    ansible.builtin.command: dnf module enable nodejs:20 -y
 
-    
-    - name : create expense user
-      ansible.builtin.user:
-        name : expense
+  - name: install nodejs
+    ansible.builtin.package:
+      name: "{{ item }}"
+      state: present
+    loop:
+    - nodejs
+    - mysql
 
-    - name : create app directory
-      ansible.builtin.file:
-        path: /app
-        state : directory
+  - name: create expense user
+    ansible.builtin.user:
+      name: expense
 
-    - name : downloading the application code
-      ansible.builtin.get_url:
-        url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
-        dest: /tmp/backend.zip
-    
+  - name: create app directory
+    ansible.builtin.file:
+      path: /app
+      state: directory
+  
+  - name: download backend code
+    ansible.builtin.get_url:
+      url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+      dest: /tmp/backend.zip
 
-    - name : unarchieve backend code
-      ansible.builtin.unarchive:
-        src : /tmp/backend.zip
-        dest : /app
-        remote_src: yes
-    
-    - name : Installation dependencies
-      community.general.npm:
-       path : /app
+  - name: unzip backend code
+    ansible.builtin.unarchive:
+      src: /tmp/backend.zip
+      dest: /app
+      remote_src: yes
+  
+  - name: Install dependencies
+    community.general.npm:
+      path: /app
 
-    - name : copy backend
-      ansible.builtin.copy :
-        src : backend.service
-        dest : /etc/systemd/system/backend.service    
+  - name: copy backend service
+    ansible.builtin.copy:
+      src: backend.service
+      dest: /etc/systemd/system/backend.service
 
-    - name : import of sql data
-      community.mysql.mysql_db:
-        state : import
-        name : all  
-        login_user: root
-        login_password: ExpenseApp@1
-        login_host: mysql.naishikacharan.icu
-        target : /app/schema/backend.sql
+  - name: install python libs
+    ansible.builtin.pip:
+      name: "{{ item }}"
+      executable: pip3.9
+    loop:
+    - cryptography
+    - PyMySQL
+
+  - name: import mysql data
+    community.mysql.mysql_db:
+      state: import
+      name: all
+      login_user: root
+      login_password: ExpenseApp@1
+      login_host: mysql.naishikacharan.icu
+      target: /app/schema/backend.sql
+
+  - name: daemon reload and restart service
+    ansible.builtin.systemd_service:
+      enabled: true
+      state: restarted
+      daemon_reload: true
+      name: backend
 
 
           
