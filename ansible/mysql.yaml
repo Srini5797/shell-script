@@ -1,39 +1,42 @@
-- name: install mysql server
+- name: configure mysql server
   hosts: mysql
-  become : yes
-  tasks: 
+  become: yes
+  vars:
+    mysql_root_password: ExpenseApp@1
+  tasks:
+  - name: Install MySQL libraries
+    ansible.builtin.pip:
+      name: "{{ item }}"
+      executable: pip3.9
+    loop:
+    - cryptography
+    - PyMySQL
 
-   - name: Insall mysql libraries
-     ansible.builtin.pip:
-       name: Pymyql
-       executable: pip3.9
+  - name: Install MySQL server
+    ansible.builtin.package:
+      name: mysql-server
+      state: installed
 
-   - name : install mysql server
-     ansible.builtin.package:
-       name : mysql-server
-       state: installed
-
-   - name : start and enable mysql service 
-     ansible.builtin.service: 
+  - name: start and enable mysql server
+    ansible.builtin.service:
       name: mysqld
-      enabled : yes
-      state : started
+      state: started
+      enabled: yes
 
-   - name: connect to mysql server
-     community.mysql.mysql_info:
-         login_user: root
-         login_password: ExpenseApp@1   
-         login_host: mysql.daws82s.online
-     register : mysql_info
-     ignore_errors: true
+  - name: connect to mysql server
+    community.mysql.mysql_info:
+      login_user: root
+      login_password: "{{ mysql_root_password }}"
+      login_host: mysql.daws82s.online
+    register: mysql_info
+    ignore_errors: true
 
+  - name: print the output
+    ansible.builtin.debug:
+      msg: "MySQL info: {{ mysql_info }}"
 
-   - name : print the output
-     ansible.builtin.debug :
-       msg : "Mysqlinfo :{{mysql_info}}"
-  
-   - name : setup root login_password
-     ansible.builtin.command: " mysql_secure_installation --set-root-pass ExpenseApp@1"
-     when: mysql_info.failed is true
+  - name: setup root password
+    ansible.builtin.command: " mysql_secure_installation --set-root-pass {{ mysql_root_password }} "
+    when: mysql_info.failed is true
 
    
