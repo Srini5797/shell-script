@@ -31,7 +31,7 @@
     - name : unarchieve backend code
       ansible.builtin.unarchive:
         src : /tmp/backend.zip
-        dest : cd /app
+        dest : /app
         remote_src: yes
 
 
