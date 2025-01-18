@@ -34,9 +34,10 @@
         dest : /app
         remote_src: yes
     
-    - name : Installation of NPM
-      ansible.builtin.command: npm install
-
+    - name : Installation dependencies
+      community.general.npm:
+       path : /app
+       
 
 
           
