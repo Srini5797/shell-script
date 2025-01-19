@@ -25,14 +25,14 @@
 
   - name : download web content
     ansible.builtin.get_url:
-    url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zipnf
-    dest: /tmp/frontend.zip
+      url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zipnf
+      dest: /tmp/frontend.zip
 
 
   - name : extracting front end 
     ansible.builtin.get_url:
-    url: /tmp/frontend.zip
-    dest: /usr/share/nginx/html
+      url: /tmp/frontend.zip
+      dest: /usr/share/nginx/html
    
   - name: copy expense config
     ansible.builtin.copy:
