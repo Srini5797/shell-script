@@ -33,6 +33,7 @@
     ansible.builtin.get_url:
       url: /tmp/frontend.zip
       dest: /usr/share/nginx/html
+      remote_src: yes
    
   - name: copy expense config
     ansible.builtin.copy:
