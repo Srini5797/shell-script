@@ -2,11 +2,10 @@
   connection: local
   hosts: local
   vars:
-    subnet_id: subnet-0ea509ad4cba242d7
-    sg_id: sg-0e978039cdb6c3057
+    subnet_id: subnet-02abaaee41f9ccd69
+    sg_id: sg-033fa6f6d005e8a89
     ami_id: ami-09c813fb71547fc4f
     instance_type: t3.micro
-    zone: daws82s.online
     instances:
     - mysql
     - backend
