@@ -31,46 +31,11 @@
   - name: print ec2_info
     ansible.builtin.debug:
       msg: "{{ ec2_info }}"
-  - name: create ec2 and r53 records
-  connection: local
-  hosts: local
-  vars:
-    subnet_id: subnet-0ea509ad4cba242d7
-    sg_id: sg-0e978039cdb6c3057
-    ami_id: ami-09c813fb71547fc4f
-    instance_type: t3.micro
-    zone: daws82s.online
-    instances:
-    - mysql
-    - backend
-    - frontend
-  tasks:
-  - name: Install AWS Python libraries
-    ansible.builtin.pip:
-      name: "{{ item }}"
-      executable: pip3.9
-    loop:
-    - boto3
-    - botocore
-  - name: create ec2 instances
-    amazon.aws.ec2_instance:
-      name: "{{ item }}"
-      subnet_id: "{{ subnet_id }}"
-      security_group: "{{ sg_id }}"
-      image_id: "{{ ami_id }}"
-      instance_type: "{{ instance_type }}"
-    loop: "{{ instances }}"
-    register: ec2_info
-
-  - name: print ec2_info
-    ansible.builtin.debug:
-      msg: "{{ ec2_info }}"
-
+  
   - name: print private IP addresses
     ansible.builtin.debug:
       msg: "{{ item.instances[0].private_ip_address }}"
     loop: "{{ ec2_info.results }}"
 
   
-
   
