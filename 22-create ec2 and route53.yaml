@@ -1,0 +1,22 @@
+- name : create ec2 and configure route 53
+  connection : local
+  hosts : local
+  vars :
+    subnet_id: subnet-02abaaee41f9ccd69
+    sg_id : sg-033fa6f6d005e8a89
+    instance_type : t2.micro
+    instances:
+     - mysql
+     - backend
+     - frontend
+  tasks:
+   - name : create ec2 instances
+     amazon.aws.ec2_instance:
+           name: "{{ item }}"
+           subnet_id: "{{ subnet_id }}"
+           security_group: "{{ sg_id }}"
+           image_id: "{{ ami_id }}"
+           instance_type: "{{ instance_type }}"
+           loop: "{{ instances }}"
+           register: ec2_info
+    
