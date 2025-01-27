@@ -1,6 +1,0 @@
-- name: configuring MySQL server
-  hosts: local
-  become: yes
-
-  roles:
-  - mysql
